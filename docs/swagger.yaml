@@ -1,0 +1,431 @@
+basePath: /api
+definitions:
+  api.Response:
+    properties:
+      code:
+        type: integer
+      data: {}
+      message:
+        type: string
+    type: object
+  api.SetReviewRequest:
+    properties:
+      content:
+        type: string
+      rating:
+        type: number
+    required:
+    - content
+    - rating
+    type: object
+  api.SignInRequest:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    required:
+    - email
+    - password
+    type: object
+  api.SignUpRequest:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    required:
+    - email
+    - password
+    type: object
+host: 127.0.0.1:8080
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: This is a sample server for Vega-Server API.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Vega-Server API
+  version: "1.0"
+paths:
+  /movie:
+    get:
+      consumes:
+      - application/json
+      description: 获取电影信息接口
+      parameters:
+      - description: 电影ID
+        in: query
+        name: movieID
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功获取电影信息
+          schema:
+            $ref: '#/definitions/api.Response'
+        "400":
+          description: 请求参数错误
+          schema:
+            $ref: '#/definitions/api.Response'
+        "500":
+          description: 服务器内部错误
+          schema:
+            $ref: '#/definitions/api.Response'
+      summary: 获取电影信息
+      tags:
+      - 电影
+  /movie/reviews:
+    get:
+      consumes:
+      - application/json
+      description: 获取电影信息和评论列表接口
+      parameters:
+      - description: 电影ID
+        in: query
+        name: movieID
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功获取电影信息和评论列表
+          schema:
+            $ref: '#/definitions/api.Response'
+        "400":
+          description: 请求参数错误
+          schema:
+            $ref: '#/definitions/api.Response'
+        "500":
+          description: 服务器内部错误
+          schema:
+            $ref: '#/definitions/api.Response'
+      summary: 获取电影信息和评论列表
+      tags:
+      - 电影
+  /movies:
+    get:
+      consumes:
+      - application/json
+      description: 获取电影类型榜单接口
+      parameters:
+      - description: Genre
+        in: query
+        name: genre
+        required: true
+        type: string
+      - description: Category
+        in: query
+        name: category
+        required: true
+        type: string
+      - description: Field
+        in: query
+        name: field
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功获取电影类型榜单
+          schema:
+            $ref: '#/definitions/api.Response'
+        "400":
+          description: 请求参数错误
+          schema:
+            $ref: '#/definitions/api.Response'
+        "500":
+          description: 服务器内部错误
+          schema:
+            $ref: '#/definitions/api.Response'
+      summary: 获取电影类型榜单
+      tags:
+      - 电影
+  /movies/cinema/now-playing:
+    get:
+      consumes:
+      - application/json
+      description: 获取正在热映电影列表接口
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功获取正在热映电影列表
+          schema:
+            $ref: '#/definitions/api.Response'
+        "500":
+          description: 服务器内部错误
+          schema:
+            $ref: '#/definitions/api.Response'
+      summary: 获取正在热映电影列表
+      tags:
+      - 电影
+  /review/movie:
+    get:
+      consumes:
+      - application/json
+      description: 获取评论信息（电影页面）接口
+      parameters:
+      - description: 评论ID
+        in: query
+        name: reviewID
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功获取评论信息（电影页面）
+          schema:
+            $ref: '#/definitions/api.Response'
+        "400":
+          description: 请求参数错误
+          schema:
+            $ref: '#/definitions/api.Response'
+        "500":
+          description: 服务器内部错误
+          schema:
+            $ref: '#/definitions/api.Response'
+      summary: 获取评论信息（电影页面）
+      tags:
+      - 评论
+  /review/user:
+    get:
+      consumes:
+      - application/json
+      description: 获取评论信息（用户页面）接口
+      parameters:
+      - description: 评论ID
+        in: query
+        name: reviewID
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功获取评论信息（用户页面）
+          schema:
+            $ref: '#/definitions/api.Response'
+        "400":
+          description: 请求参数错误
+          schema:
+            $ref: '#/definitions/api.Response'
+        "500":
+          description: 服务器内部错误
+          schema:
+            $ref: '#/definitions/api.Response'
+      summary: 获取评论信息（用户页面）
+      tags:
+      - 评论
+  /sign-in:
+    post:
+      consumes:
+      - application/json
+      description: 用户登录接口
+      parameters:
+      - description: 登录信息
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/api.SignInRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 登录成功
+          schema:
+            $ref: '#/definitions/api.Response'
+        "400":
+          description: 请求参数错误
+          schema:
+            $ref: '#/definitions/api.Response'
+        "500":
+          description: 服务器内部错误
+          schema:
+            $ref: '#/definitions/api.Response'
+      summary: 用户登录
+      tags:
+      - 用户
+  /sign-up:
+    post:
+      consumes:
+      - application/json
+      description: 用户注册接口
+      parameters:
+      - description: 用户信息
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/api.SignUpRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 注册成功
+          schema:
+            $ref: '#/definitions/api.Response'
+        "400":
+          description: 请求参数错误
+          schema:
+            $ref: '#/definitions/api.Response'
+        "500":
+          description: 服务器内部错误
+          schema:
+            $ref: '#/definitions/api.Response'
+      summary: 用户注册
+      tags:
+      - 用户
+  /user:
+    get:
+      consumes:
+      - application/json
+      description: 获取用户信息接口
+      parameters:
+      - description: Bearer token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功获取用户信息
+          schema:
+            $ref: '#/definitions/api.Response'
+        "401":
+          description: 未授权
+          schema:
+            $ref: '#/definitions/api.Response'
+        "500":
+          description: 服务器内部错误
+          schema:
+            $ref: '#/definitions/api.Response'
+      summary: 获取用户信息
+      tags:
+      - 用户
+  /user/review:
+    get:
+      consumes:
+      - application/json
+      description: 获取用户对电影的评论信息接口
+      parameters:
+      - description: Bearer token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: 电影ID
+        in: query
+        name: movieID
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功获取用户对电影的评论信息
+          schema:
+            $ref: '#/definitions/api.Response'
+        "400":
+          description: 请求参数错误
+          schema:
+            $ref: '#/definitions/api.Response'
+        "401":
+          description: 未授权
+          schema:
+            $ref: '#/definitions/api.Response'
+        "404":
+          description: 未找到资源
+          schema:
+            $ref: '#/definitions/api.Response'
+        "500":
+          description: 服务器内部错误
+          schema:
+            $ref: '#/definitions/api.Response'
+      summary: 获取用户对电影的评论信息
+      tags:
+      - 用户
+    post:
+      consumes:
+      - application/json
+      description: 创建或更新用户对电影的评论信息接口
+      parameters:
+      - description: Bearer token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: 电影ID
+        in: path
+        name: movieID
+        required: true
+        type: integer
+      - description: 评论信息
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/api.SetReviewRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功获取用户对电影的评论信息
+          schema:
+            $ref: '#/definitions/api.Response'
+        "400":
+          description: 请求参数错误
+          schema:
+            $ref: '#/definitions/api.Response'
+        "401":
+          description: 未授权
+          schema:
+            $ref: '#/definitions/api.Response'
+        "500":
+          description: 服务器内部错误
+          schema:
+            $ref: '#/definitions/api.Response'
+      summary: 创建或更新用户对电影的评论信息
+      tags:
+      - 用户
+  /user/reviews:
+    get:
+      consumes:
+      - application/json
+      description: 获取用户信息和评论列表接口
+      parameters:
+      - description: Bearer token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功获取用户信息和评论列表
+          schema:
+            $ref: '#/definitions/api.Response'
+        "401":
+          description: 未授权
+          schema:
+            $ref: '#/definitions/api.Response'
+        "500":
+          description: 服务器内部错误
+          schema:
+            $ref: '#/definitions/api.Response'
+      summary: 获取用户信息和评论列表
+      tags:
+      - 用户
+swagger: "2.0"

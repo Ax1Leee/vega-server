@@ -24,7 +24,7 @@ import (
 // @BasePath /api
 func main() {
 	// Initialize path
-	path := flag.String("path", "config/dev.yaml", "path, eg: -path config/dev.yaml")
+	path := flag.String("path", "config/dev.yaml", "path, eg: -path=config/dev.yaml")
 	flag.Parse()
 	// Initialize conf
 	conf, err := config.LoadConfig(*path)

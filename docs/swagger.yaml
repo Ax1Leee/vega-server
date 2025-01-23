@@ -38,7 +38,7 @@ definitions:
     - email
     - password
     type: object
-host: 127.0.0.1:8080
+host: localhost:8080
 info:
   contact:
     email: support@swagger.io

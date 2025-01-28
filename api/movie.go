@@ -26,23 +26,23 @@ type GetMovieRequest struct {
 	ID uint `form:"movieID" binding:"required"`
 }
 
+type GetMovieResponseData struct {
+	Movie Movie `json:"movie"`
+}
+
 type GetAdvancedMovieRequest struct {
 	ID uint `form:"movieID" binding:"required"`
+}
+
+type GetAdvancedMovieResponseData struct {
+	Movie   AdvancedMovie `json:"movie"`
+	Reviews []uint        `json:"reviews"`
 }
 
 type GetMoviesRequest struct {
 	Genre    string `form:"genre" binding:"required"`
 	Category string `form:"category" binding:"required"`
 	Field    string `form:"field"`
-}
-
-type GetMovieResponseData struct {
-	Movie Movie `json:"movie"`
-}
-
-type GetAdvancedMovieResponseData struct {
-	Movie   AdvancedMovie `json:"movie"`
-	Reviews []uint        `json:"reviews"`
 }
 
 type GetMoviesResponseData struct {

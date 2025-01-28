@@ -60,7 +60,7 @@ func NewHTTPServer(
 		{
 			user.GET("/user", userHandler.GetUser)
 			user.GET("/user/reviews", userHandler.GetAdvancedUser)
-			user.GET("/user/review", userHandler.GetReview)
+			user.GET("/user/review/:movieID", userHandler.GetReview)
 			user.POST("/user/review/:movieID", userHandler.SetReview)
 		}
 	}

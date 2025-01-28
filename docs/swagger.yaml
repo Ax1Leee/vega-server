@@ -326,7 +326,7 @@ paths:
         required: true
         type: string
       - description: 电影ID
-        in: query
+        in: path
         name: movieID
         required: true
         type: integer

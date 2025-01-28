@@ -19,14 +19,14 @@ type SignUpRequest struct {
 	Password string `json:"password" binding:"required"`
 }
 
-type SignInRequest struct {
-	Email    string `json:"email" binding:"required,email"`
-	Password string `json:"password" binding:"required"`
-}
-
 type SignUpResponseData struct {
 	User  User   `json:"user"`
 	Token string `json:"token"`
+}
+
+type SignInRequest struct {
+	Email    string `json:"email" binding:"required,email"`
+	Password string `json:"password" binding:"required"`
 }
 
 type SignInResponseData struct {

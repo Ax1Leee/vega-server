@@ -146,7 +146,7 @@ func (userHandler *UserHandler) GetAdvancedUser(c *gin.Context) {
 // @Accept json
 // @Produce json
 // @Param Authorization header string true "Bearer token"
-// @Param movieID query uint true "电影ID"
+// @Param movieID path uint true "电影ID"
 // @Success 200 {object} api.Response "成功获取用户对电影的评论信息"
 // @Failure 400 {object} api.Response "请求参数错误"
 // @Failure 401 {object} api.Response "未授权"
@@ -155,12 +155,12 @@ func (userHandler *UserHandler) GetAdvancedUser(c *gin.Context) {
 // @Router /user/review [get]
 func (userHandler *UserHandler) GetReview(c *gin.Context) {
 	userID := c.MustGet("id").(uint)
-	req := &api.GetReviewRequest{}
-	if err := c.ShouldBindQuery(req); err != nil {
+	movieID, err := strconv.ParseUint(c.Param("movieID"), 10, 64)
+	if err != nil {
 		api.HandleError(c, 400, "Bad Request", nil)
 		return
 	}
-	resp, err := userHandler.reviewService.GetReview(userID, req.MovieID)
+	resp, err := userHandler.reviewService.GetReview(userID, uint(movieID))
 	if err != nil {
 		if errors.Is(err, errors.New("review not found")) {
 			api.HandleError(c, 404, "Not Found", nil)
@@ -192,7 +192,7 @@ func (userHandler *UserHandler) SetReview(c *gin.Context) {
 	userID := c.MustGet("id").(uint)
 	movieID, err := strconv.ParseUint(c.Param("movieID"), 10, 64)
 	if err != nil {
-		api.HandleError(c, 500, "Internal Server Error", nil)
+		api.HandleError(c, 400, "Bad Request", nil)
 		return
 	}
 	req := &api.SetReviewRequest{}

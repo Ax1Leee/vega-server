@@ -447,7 +447,7 @@ const docTemplate = `{
                         "type": "integer",
                         "description": "电影ID",
                         "name": "movieID",
-                        "in": "query",
+                        "in": "path",
                         "required": true
                     }
                 ],

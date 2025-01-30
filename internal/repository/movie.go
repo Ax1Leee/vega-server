@@ -24,20 +24,20 @@ func (movieRepository *MovieRepository) QueryMovieByID(id uint) (*model.Movie, e
 	return movie, nil
 }
 
-func (movieRepository *MovieRepository) QueryMoviesByGenreAndCategory(genre string, category string) ([]uint, error) {
+func (movieRepository *MovieRepository) QueryIDsByGenreAndCategory(genre string, category string) ([]uint, error) {
 	ids, err := movieRepository.rdb.LRange(context.Background(), fmt.Sprintf("genre:%s:category:%s", genre, category), 0, -1).Result()
 	if err != nil {
 		return nil, err
 	}
-	movies := make([]uint, 0, len(ids))
+	movieIDs := make([]uint, 0, len(ids))
 	for _, id := range ids {
 		movieID, err := strconv.ParseUint(id, 10, 64)
 		if err != nil {
 			return nil, err
 		}
-		movies = append(movies, uint(movieID))
+		movieIDs = append(movieIDs, uint(movieID))
 	}
-	return movies, nil
+	return movieIDs, nil
 }
 
 func (movieRepository *MovieRepository) QueryTitleByID(id uint) (string, error) {
@@ -48,18 +48,18 @@ func (movieRepository *MovieRepository) QueryTitleByID(id uint) (string, error) 
 	return title, nil
 }
 
-func (movieRepository *MovieRepository) QueryHotMovies() ([]uint, error) {
-	ids, err := movieRepository.rdb.LRange(context.Background(), "hot-movies", 0, -1).Result()
+func (movieRepository *MovieRepository) QueryNowPlaying() ([]uint, error) {
+	ids, err := movieRepository.rdb.LRange(context.Background(), "now-playing", 0, -1).Result()
 	if err != nil {
 		return nil, err
 	}
-	movies := make([]uint, 0, len(ids))
+	movieIDs := make([]uint, 0, len(ids))
 	for _, id := range ids {
 		movieID, err := strconv.ParseUint(id, 10, 64)
 		if err != nil {
 			return nil, err
 		}
-		movies = append(movies, uint(movieID))
+		movieIDs = append(movieIDs, uint(movieID))
 	}
-	return movies, nil
+	return movieIDs, nil
 }

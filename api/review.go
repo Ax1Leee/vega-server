@@ -1,9 +1,8 @@
 package api
 
 type Review struct {
-	Rating    float32 `json:"rating"`
-	Content   string  `json:"content"`
-	UpdatedAt string  `json:"updatedAt"`
+	Rating  float32 `json:"rating"`
+	Content string  `json:"content"`
 }
 
 type GetReviewFromUserRequest struct {

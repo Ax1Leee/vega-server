@@ -91,7 +91,7 @@ func (movieHandler *MovieHandler) GetMovies(c *gin.Context) {
 	}
 	switch req.Field {
 	case "":
-		resp, err := movieHandler.movieService.GetMovies(req.Genre, req.Category)
+		resp, err := movieHandler.movieService.GetIDs(req.Genre, req.Category)
 		if err != nil {
 			api.HandleError(c, 500, "Internal Server Error", nil)
 			return
@@ -99,7 +99,7 @@ func (movieHandler *MovieHandler) GetMovies(c *gin.Context) {
 		api.HandleSuccess(c, resp)
 		return
 	case "title":
-		resp, err := movieHandler.movieService.GetAdvancedMovies(req.Genre, req.Category)
+		resp, err := movieHandler.movieService.GetTitles(req.Genre, req.Category)
 		if err != nil {
 			api.HandleError(c, 500, "Internal Server Error", nil)
 			return
@@ -112,7 +112,7 @@ func (movieHandler *MovieHandler) GetMovies(c *gin.Context) {
 	}
 }
 
-// GetHotMovies godoc
+// GetNowPlaying godoc
 // @Summary 获取正在热映电影列表
 // @Description 获取正在热映电影列表接口
 // @Tags 电影
@@ -121,8 +121,8 @@ func (movieHandler *MovieHandler) GetMovies(c *gin.Context) {
 // @Success 200 {object} api.Response "成功获取正在热映电影列表"
 // @Failure 500 {object} api.Response "服务器内部错误"
 // @Router /movies/cinema/now-playing [get]
-func (movieHandler *MovieHandler) GetHotMovies(c *gin.Context) {
-	resp, err := movieHandler.movieService.GetHotMovies()
+func (movieHandler *MovieHandler) GetNowPlaying(c *gin.Context) {
+	resp, err := movieHandler.movieService.GetNowPlaying()
 	if err != nil {
 		api.HandleError(c, 500, "Internal Server Error", nil)
 	}

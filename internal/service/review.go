@@ -33,9 +33,8 @@ func (reviewService *ReviewService) GetReviewFromUser(id uint) (*api.GetReviewFr
 			Title: review.Movie.Title,
 		},
 		Review: api.Review{
-			Rating:    review.Rating,
-			Content:   review.Content,
-			UpdatedAt: review.UpdatedAt.Format("2025-01-01 01:01:01"),
+			Rating:  review.Rating,
+			Content: review.Content,
 		},
 	}
 	return resp, nil
@@ -53,9 +52,8 @@ func (reviewService *ReviewService) GetReviewToMovie(id uint) (*api.GetReviewToM
 			Name:   review.User.Name,
 		},
 		Review: api.Review{
-			Rating:    review.Rating,
-			Content:   review.Content,
-			UpdatedAt: review.UpdatedAt.Format("2025-01-01 01:01:01"),
+			Rating:  review.Rating,
+			Content: review.Content,
 		},
 	}
 	return resp, nil

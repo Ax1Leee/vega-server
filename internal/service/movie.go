@@ -77,47 +77,47 @@ func (movieService *MovieService) GetAdvancedMovie(id uint) (*api.GetAdvancedMov
 	return resp, nil
 }
 
-func (movieService *MovieService) GetMovies(genre string, category string) (*api.GetMoviesResponseData, error) {
-	movies, err := movieService.movieRepository.QueryMoviesByGenreAndCategory(genre, category)
+func (movieService *MovieService) GetIDs(genre string, category string) (*api.GetIDsResponseData, error) {
+	ids, err := movieService.movieRepository.QueryIDsByGenreAndCategory(genre, category)
 	if err != nil {
 		return nil, errors.New("failed to get movies")
 	}
 
-	resp := &api.GetMoviesResponseData{
-		Movies: movies,
+	resp := &api.GetIDsResponseData{
+		IDs: ids,
 	}
 	return resp, nil
 }
 
-func (movieService *MovieService) GetAdvancedMovies(genre string, category string) (*api.GetAdvancedMoviesResponseData, error) {
-	movies, err := movieService.movieRepository.QueryMoviesByGenreAndCategory(genre, category)
+func (movieService *MovieService) GetTitles(genre string, category string) (*api.GetTitlesResponseData, error) {
+	ids, err := movieService.movieRepository.QueryIDsByGenreAndCategory(genre, category)
 	if err != nil {
 		return nil, errors.New("failed to get movies")
 	}
 
 	titles := make([]string, 0, 5)
-	for _, movieID := range movies[0:5] {
-		title, err := movieService.movieRepository.QueryTitleByID(movieID)
+	for _, id := range ids[0:5] {
+		title, err := movieService.movieRepository.QueryTitleByID(id)
 		if err != nil {
 			return nil, errors.New("failed to get movies")
 		}
 		titles = append(titles, title)
 	}
 
-	resp := &api.GetAdvancedMoviesResponseData{
+	resp := &api.GetTitlesResponseData{
 		Titles: titles,
 	}
 	return resp, nil
 }
 
-func (movieService *MovieService) GetHotMovies() (*api.GetHotMoviesResponseData, error) {
-	movies, err := movieService.movieRepository.QueryHotMovies()
+func (movieService *MovieService) GetNowPlaying() (*api.GetNowPlayingResponseData, error) {
+	movies, err := movieService.movieRepository.QueryNowPlaying()
 	if err != nil {
 		return nil, errors.New("failed to get movies")
 	}
 
-	resp := &api.GetHotMoviesResponseData{
-		HotMovies: movies,
+	resp := &api.GetNowPlayingResponseData{
+		Movies: movies,
 	}
 	return resp, nil
 }

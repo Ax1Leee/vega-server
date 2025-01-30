@@ -45,14 +45,14 @@ type GetMoviesRequest struct {
 	Field    string `form:"field"`
 }
 
-type GetMoviesResponseData struct {
-	Movies []uint `json:"movies"`
+type GetIDsResponseData struct {
+	IDs []uint `json:"ids"`
 }
 
-type GetAdvancedMoviesResponseData struct {
+type GetTitlesResponseData struct {
 	Titles []string `json:"titles"`
 }
 
-type GetHotMoviesResponseData struct {
-	HotMovies []uint `json:"hotMovies"`
+type GetNowPlayingResponseData struct {
+	Movies []uint `json:"movies"`
 }

@@ -111,13 +111,13 @@ func (movieService *MovieService) GetTitles(genre string, category string) (*api
 }
 
 func (movieService *MovieService) GetNowPlaying() (*api.GetNowPlayingResponseData, error) {
-	movies, err := movieService.movieRepository.QueryNowPlaying()
+	ids, err := movieService.movieRepository.QueryNowPlaying()
 	if err != nil {
 		return nil, errors.New("failed to get movies")
 	}
 
 	resp := &api.GetNowPlayingResponseData{
-		Movies: movies,
+		IDs: ids,
 	}
 	return resp, nil
 }

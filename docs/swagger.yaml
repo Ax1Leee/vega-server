@@ -4,7 +4,7 @@ definitions:
     properties:
       code:
         type: integer
-      data: {}
+      data: { }
       message:
         type: string
     type: object
@@ -15,8 +15,8 @@ definitions:
       rating:
         type: number
     required:
-    - content
-    - rating
+      - content
+      - rating
     type: object
   api.SignInRequest:
     properties:
@@ -25,8 +25,8 @@ definitions:
       password:
         type: string
     required:
-    - email
-    - password
+      - email
+      - password
     type: object
   api.SignUpRequest:
     properties:
@@ -35,8 +35,8 @@ definitions:
       password:
         type: string
     required:
-    - email
-    - password
+      - email
+      - password
     type: object
 host: localhost:8080
 info:
@@ -55,16 +55,16 @@ paths:
   /movie:
     get:
       consumes:
-      - application/json
+        - application/json
       description: 获取电影信息接口
       parameters:
-      - description: 电影ID
-        in: query
-        name: movieID
-        required: true
-        type: integer
+        - description: 电影ID
+          in: query
+          name: movieID
+          required: true
+          type: integer
       produces:
-      - application/json
+        - application/json
       responses:
         "200":
           description: 成功获取电影信息
@@ -80,20 +80,20 @@ paths:
             $ref: '#/definitions/api.Response'
       summary: 获取电影信息
       tags:
-      - 电影
+        - 电影
   /movie/reviews:
     get:
       consumes:
-      - application/json
+        - application/json
       description: 获取电影信息和评论列表接口
       parameters:
-      - description: 电影ID
-        in: query
-        name: movieID
-        required: true
-        type: integer
+        - description: 电影ID
+          in: query
+          name: movieID
+          required: true
+          type: integer
       produces:
-      - application/json
+        - application/json
       responses:
         "200":
           description: 成功获取电影信息和评论列表
@@ -109,29 +109,29 @@ paths:
             $ref: '#/definitions/api.Response'
       summary: 获取电影信息和评论列表
       tags:
-      - 电影
+        - 电影
   /movies:
     get:
       consumes:
-      - application/json
+        - application/json
       description: 获取电影类型榜单接口
       parameters:
-      - description: Genre
-        in: query
-        name: genre
-        required: true
-        type: string
-      - description: Category
-        in: query
-        name: category
-        required: true
-        type: string
-      - description: Field
-        in: query
-        name: field
-        type: string
+        - description: Genre
+          in: query
+          name: genre
+          required: true
+          type: string
+        - description: Category
+          in: query
+          name: category
+          required: true
+          type: string
+        - description: Field
+          in: query
+          name: field
+          type: string
       produces:
-      - application/json
+        - application/json
       responses:
         "200":
           description: 成功获取电影类型榜单
@@ -147,14 +147,14 @@ paths:
             $ref: '#/definitions/api.Response'
       summary: 获取电影类型榜单
       tags:
-      - 电影
+        - 电影
   /movies/cinema/now-playing:
     get:
       consumes:
-      - application/json
+        - application/json
       description: 获取正在热映电影列表接口
       produces:
-      - application/json
+        - application/json
       responses:
         "200":
           description: 成功获取正在热映电影列表
@@ -166,20 +166,20 @@ paths:
             $ref: '#/definitions/api.Response'
       summary: 获取正在热映电影列表
       tags:
-      - 电影
+        - 电影
   /review/movie:
     get:
       consumes:
-      - application/json
+        - application/json
       description: 获取评论信息（电影页面）接口
       parameters:
-      - description: 评论ID
-        in: query
-        name: reviewID
-        required: true
-        type: integer
+        - description: 评论ID
+          in: query
+          name: reviewID
+          required: true
+          type: integer
       produces:
-      - application/json
+        - application/json
       responses:
         "200":
           description: 成功获取评论信息（电影页面）
@@ -195,20 +195,20 @@ paths:
             $ref: '#/definitions/api.Response'
       summary: 获取评论信息（电影页面）
       tags:
-      - 评论
+        - 评论
   /review/user:
     get:
       consumes:
-      - application/json
+        - application/json
       description: 获取评论信息（用户页面）接口
       parameters:
-      - description: 评论ID
-        in: query
-        name: reviewID
-        required: true
-        type: integer
+        - description: 评论ID
+          in: query
+          name: reviewID
+          required: true
+          type: integer
       produces:
-      - application/json
+        - application/json
       responses:
         "200":
           description: 成功获取评论信息（用户页面）
@@ -224,21 +224,21 @@ paths:
             $ref: '#/definitions/api.Response'
       summary: 获取评论信息（用户页面）
       tags:
-      - 评论
+        - 评论
   /sign-in:
     post:
       consumes:
-      - application/json
+        - application/json
       description: 用户登录接口
       parameters:
-      - description: 登录信息
-        in: body
-        name: request
-        required: true
-        schema:
-          $ref: '#/definitions/api.SignInRequest'
+        - description: 登录信息
+          in: body
+          name: request
+          required: true
+          schema:
+            $ref: '#/definitions/api.SignInRequest'
       produces:
-      - application/json
+        - application/json
       responses:
         "200":
           description: 登录成功
@@ -254,21 +254,21 @@ paths:
             $ref: '#/definitions/api.Response'
       summary: 用户登录
       tags:
-      - 用户
+        - 用户
   /sign-up:
     post:
       consumes:
-      - application/json
+        - application/json
       description: 用户注册接口
       parameters:
-      - description: 用户信息
-        in: body
-        name: request
-        required: true
-        schema:
-          $ref: '#/definitions/api.SignUpRequest'
+        - description: 用户信息
+          in: body
+          name: request
+          required: true
+          schema:
+            $ref: '#/definitions/api.SignUpRequest'
       produces:
-      - application/json
+        - application/json
       responses:
         "200":
           description: 注册成功
@@ -284,20 +284,20 @@ paths:
             $ref: '#/definitions/api.Response'
       summary: 用户注册
       tags:
-      - 用户
+        - 用户
   /user:
     get:
       consumes:
-      - application/json
+        - application/json
       description: 获取用户信息接口
       parameters:
-      - description: Bearer token
-        in: header
-        name: Authorization
-        required: true
-        type: string
+        - description: Bearer token
+          in: header
+          name: Authorization
+          required: true
+          type: string
       produces:
-      - application/json
+        - application/json
       responses:
         "200":
           description: 成功获取用户信息
@@ -313,25 +313,25 @@ paths:
             $ref: '#/definitions/api.Response'
       summary: 获取用户信息
       tags:
-      - 用户
+        - 用户
   /user/review:
     get:
       consumes:
-      - application/json
+        - application/json
       description: 获取用户对电影的评论信息接口
       parameters:
-      - description: Bearer token
-        in: header
-        name: Authorization
-        required: true
-        type: string
-      - description: 电影ID
-        in: path
-        name: movieID
-        required: true
-        type: integer
+        - description: Bearer token
+          in: header
+          name: Authorization
+          required: true
+          type: string
+        - description: 电影ID
+          in: path
+          name: movieID
+          required: true
+          type: integer
       produces:
-      - application/json
+        - application/json
       responses:
         "200":
           description: 成功获取用户对电影的评论信息
@@ -355,30 +355,30 @@ paths:
             $ref: '#/definitions/api.Response'
       summary: 获取用户对电影的评论信息
       tags:
-      - 用户
+        - 用户
     post:
       consumes:
-      - application/json
+        - application/json
       description: 创建或更新用户对电影的评论信息接口
       parameters:
-      - description: Bearer token
-        in: header
-        name: Authorization
-        required: true
-        type: string
-      - description: 电影ID
-        in: path
-        name: movieID
-        required: true
-        type: integer
-      - description: 评论信息
-        in: body
-        name: request
-        required: true
-        schema:
-          $ref: '#/definitions/api.SetReviewRequest'
+        - description: Bearer token
+          in: header
+          name: Authorization
+          required: true
+          type: string
+        - description: 电影ID
+          in: path
+          name: movieID
+          required: true
+          type: integer
+        - description: 评论信息
+          in: body
+          name: request
+          required: true
+          schema:
+            $ref: '#/definitions/api.SetReviewRequest'
       produces:
-      - application/json
+        - application/json
       responses:
         "200":
           description: 成功获取用户对电影的评论信息
@@ -398,20 +398,20 @@ paths:
             $ref: '#/definitions/api.Response'
       summary: 创建或更新用户对电影的评论信息
       tags:
-      - 用户
+        - 用户
   /user/reviews:
     get:
       consumes:
-      - application/json
+        - application/json
       description: 获取用户信息和评论列表接口
       parameters:
-      - description: Bearer token
-        in: header
-        name: Authorization
-        required: true
-        type: string
+        - description: Bearer token
+          in: header
+          name: Authorization
+          required: true
+          type: string
       produces:
-      - application/json
+        - application/json
       responses:
         "200":
           description: 成功获取用户信息和评论列表
@@ -427,5 +427,5 @@ paths:
             $ref: '#/definitions/api.Response'
       summary: 获取用户信息和评论列表
       tags:
-      - 用户
+        - 用户
 swagger: "2.0"

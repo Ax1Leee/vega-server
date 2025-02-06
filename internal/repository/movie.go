@@ -16,6 +16,27 @@ func NewMovieRepository(repository *Repository) *MovieRepository {
 	return &MovieRepository{repository}
 }
 
+func (movieRepository *MovieRepository) Create(movie *model.Movie) error {
+	if err := movieRepository.db.Create(movie).Error; err != nil {
+		return err
+	}
+	return nil
+}
+
+func (movieRepository *MovieRepository) Update(movie *model.Movie) error {
+	if err := movieRepository.db.Save(movie).Error; err != nil {
+		return err
+	}
+	return nil
+}
+
+func (movieRepository *MovieRepository) Delete(movie *model.Movie) error {
+	if err := movieRepository.db.Delete(movie).Error; err != nil {
+		return err
+	}
+	return nil
+}
+
 func (movieRepository *MovieRepository) QueryMovieByID(id uint) (*model.Movie, error) {
 	movie := &model.Movie{}
 	if err := movieRepository.db.Preload("Genres").Preload("Stars").Preload("Reviews").Where("id = ?", id).First(&movie).Error; err != nil {

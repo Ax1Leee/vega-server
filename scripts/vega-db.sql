@@ -1,15 +1,15 @@
 CREATE TABLE IF NOT EXISTS users
 (
     id              INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, --id
-    email           TEXT NOT NULL,                              --email
-    hashed_password TEXT NOT NULL,                              --hashed password
-    avatar          TEXT NOT NULL,                              --avatar
-    name            TEXT NOT NULL,                              --name
+    email           TEXT                              NOT NULL, --email
+    hashed_password TEXT                              NOT NULL, --hashed password
+    avatar          TEXT                              NOT NULL, --avatar
+    name            TEXT                              NOT NULL, --name
     gender          TEXT,                                       --gender
     birth_date      TEXT,                                       --birth date
     location        TEXT,                                       --location
     bio             TEXT,                                       --bio
-    created_at      TEXT NOT NULL,                              --created at
+    created_at      TEXT                              NOT NULL, --created at
     updated_at      TEXT,                                       --updated at
     deleted_at      TEXT                                        --deleted at
 ); --users
@@ -17,17 +17,17 @@ CREATE TABLE IF NOT EXISTS users
 CREATE TABLE IF NOT EXISTS movies
 (
     id            INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, --id
-    cover         TEXT NOT NULL,                              --cover
-    title         TEXT NOT NULL,                              --title
+    cover         TEXT                              NOT NULL, --cover
+    title         TEXT                              NOT NULL, --title
     release_date  TEXT,                                       --release date
     location      TEXT,                                       --location
     director      TEXT,                                       --director
     language      TEXT,                                       --language
     runtime       TEXT,                                       --runtime
     storyline     TEXT,                                       --storyline
-    critic_rating REAL NOT NULL,                              --critic rating
-    user_rating   REAL NOT NULL,                              --user rating
-    created_at    TEXT NOT NULL,                              --created at
+    critic_rating REAL                              NOT NULL, --critic rating
+    user_rating   REAL                              NOT NULL, --user rating
+    created_at    TEXT                              NOT NULL, --created at
     updated_at    TEXT,                                       --updated at
     deleted_at    TEXT                                        --deleted at
 ); --movies
@@ -35,11 +35,11 @@ CREATE TABLE IF NOT EXISTS movies
 CREATE TABLE IF NOT EXISTS reviews
 (
     id         INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, --id
-    user_id    INTEGER NOT NULL,                           --user id
-    movie_id   INTEGER NOT NULL,                           --movie id
-    rating     REAL    NOT NULL,                           --rating
-    content    TEXT    NOT NULL,                           --content
-    created_at TEXT    NOT NULL,                           --created at
+    user_id    INTEGER                           NOT NULL, --user id
+    movie_id   INTEGER                           NOT NULL, --movie id
+    rating     REAL                              NOT NULL, --rating
+    content    TEXT                              NOT NULL, --content
+    created_at TEXT                              NOT NULL, --created at
     updated_at TEXT,                                       --updated at
     deleted_at TEXT,                                       --deleted at
     FOREIGN KEY (user_id) REFERENCES users (id),
@@ -49,8 +49,8 @@ CREATE TABLE IF NOT EXISTS reviews
 CREATE TABLE IF NOT EXISTS genres
 (
     id         INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, --id
-    name       TEXT NOT NULL,                              --name
-    created_at TEXT NOT NULL,                              --created at
+    name       TEXT                              NOT NULL, --name
+    created_at TEXT                              NOT NULL, --created at
     updated_at TEXT,                                       --updated at
     deleted_at TEXT                                        --deleted at
 ); --genres;
@@ -58,8 +58,8 @@ CREATE TABLE IF NOT EXISTS genres
 CREATE TABLE IF NOT EXISTS stars
 (
     id         INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, --id
-    name       TEXT NOT NULL,                              --name
-    created_at TEXT NOT NULL,                              --created at
+    name       TEXT                              NOT NULL, --name
+    created_at TEXT                              NOT NULL, --created at
     updated_at TEXT,                                       --updated at
     deleted_at TEXT                                        --deleted at
 ); --stars;

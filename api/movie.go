@@ -54,5 +54,5 @@ type GetTitlesResponseData struct {
 }
 
 type GetNowPlayingResponseData struct {
-	Movies []uint `json:"movies"`
+	IDs []uint `json:"ids"`
 }

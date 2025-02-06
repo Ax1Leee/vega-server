@@ -35,7 +35,7 @@ func (reviewRepository *ReviewRepository) Delete(review *model.Review) error {
 
 func (reviewRepository *ReviewRepository) QueryReviewByID(id uint) (*model.Review, error) {
 	review := &model.Review{}
-	if err := reviewRepository.db.Preload("User, Movie").Where("id = ?", id).First(review).Error; err != nil {
+	if err := reviewRepository.db.Preload("User").Preload("Movie").Where("id = ?", id).First(review).Error; err != nil {
 		return nil, err
 	}
 	return review, nil

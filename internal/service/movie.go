@@ -42,14 +42,14 @@ func (movieService *MovieService) GetAdvancedMovie(id uint) (*api.GetAdvancedMov
 		return nil, errors.New("failed to get movie")
 	}
 
-	genres := make([]string, 0, len(movie.MovieGenres))
-	for _, movieGenre := range movie.MovieGenres {
-		genres = append(genres, movieGenre.Genre.Name)
+	genres := make([]string, 0, len(movie.Genres))
+	for _, genre := range movie.Genres {
+		genres = append(genres, genre.Name)
 	}
 
-	stars := make([]string, 0, len(movie.MovieStars))
-	for _, movieStar := range movie.MovieStars {
-		stars = append(stars, movieStar.Star.Name)
+	stars := make([]string, 0, len(movie.Stars))
+	for _, star := range movie.Stars {
+		stars = append(stars, star.Name)
 	}
 
 	reviews := make([]uint, 0, len(movie.Reviews))

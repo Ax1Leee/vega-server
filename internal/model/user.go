@@ -5,7 +5,10 @@ import (
 )
 
 type User struct {
-	gorm.Model
+	ID             uint `gorm:"primarykey"`
+	CreatedAt      CustomTime
+	UpdatedAt      CustomTime
+	DeletedAt      gorm.DeletedAt `gorm:"index"`
 	Email          string
 	HashedPassword string
 	Avatar         string

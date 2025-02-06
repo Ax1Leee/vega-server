@@ -5,9 +5,11 @@ import (
 )
 
 type Star struct {
-	gorm.Model
-	Name       string
-	MovieStars []MovieStar `gorm:"foreignKey:StarID"`
+	ID        uint `gorm:"primarykey"`
+	CreatedAt CustomTime
+	UpdatedAt CustomTime
+	DeletedAt gorm.DeletedAt `gorm:"index"`
+	Name      string
 }
 
 func (Star) TableName() string {

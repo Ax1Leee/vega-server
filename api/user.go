@@ -42,3 +42,23 @@ type GetAdvancedUserResponseData struct {
 	User    AdvancedUser `json:"user"`
 	Reviews []uint       `json:"reviews"`
 }
+
+type GetReviewToMovieResponseData struct {
+	User   User   `json:"user"`
+	Review Review `json:"review"`
+}
+
+type GetReviewResponseData struct {
+	Rating  float32 `json:"rating"`
+	Content string  `json:"content"`
+}
+
+type SetReviewRequest struct {
+	Rating  float32 `json:"rating" binding:"required"`
+	Content string  `json:"content" binding:"required"`
+}
+
+type SetReviewResponseData struct {
+	Rating  float32 `json:"rating"`
+	Content string  `json:"content"`
+}

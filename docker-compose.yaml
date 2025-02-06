@@ -7,35 +7,12 @@ services:
     ports:
       - "8080:8080"
     environment:
-      DB_HOST: db
-      DB_PORT: 3306
-      DB_USER: root
-      DB_PASSWORD: 123456
-      DB_NAME: vega_db
       REDIS_HOST: redis
       REDIS_PORT: 6379
       REDIS_PASSWORD: 123456
     depends_on:
-      db:
-        condition: service_healthy
       redis:
         condition: service_healthy
-
-  db:
-    image: mysql:8.0.36
-    ports:
-      - "8000:3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: 123456
-      MYSQL_DATABASE: vega_db
-    volumes:
-      - mysql_data:/var/lib/mysql
-      - ./scripts:/docker-entrypoint-initdb.d
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
 
   redis:
     image: redis:latest
@@ -51,5 +28,4 @@ services:
       retries: 5
 
 volumes:
-  mysql_data:
   redis_data:

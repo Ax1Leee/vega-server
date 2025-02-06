@@ -5,9 +5,11 @@ import (
 )
 
 type Genre struct {
-	gorm.Model
-	Name        string
-	MovieGenres []MovieGenre `gorm:"foreignKey:GenreID"`
+	ID        uint `gorm:"primarykey"`
+	CreatedAt CustomTime
+	UpdatedAt CustomTime
+	DeletedAt gorm.DeletedAt `gorm:"index"`
+	Name      string
 }
 
 func (Genre) TableName() string {

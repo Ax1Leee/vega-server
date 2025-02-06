@@ -32,7 +32,7 @@ func (userService *UserService) SignUp(req *api.SignUpRequest) (*api.SignUpRespo
 			return nil, errors.New("failed to sign up")
 		}
 	} else {
-		return nil, errors.New("email already in use")
+		return nil, errors.New("email already exists")
 	}
 
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(req.Password), bcrypt.DefaultCost)

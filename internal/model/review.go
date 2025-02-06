@@ -5,13 +5,16 @@ import (
 )
 
 type Review struct {
-	gorm.Model
-	UserID  uint
-	User    User
-	MovieID uint
-	Movie   Movie
-	Rating  float32
-	Content string
+	ID        uint `gorm:"primarykey"`
+	CreatedAt CustomTime
+	UpdatedAt CustomTime
+	DeletedAt gorm.DeletedAt `gorm:"index"`
+	UserID    uint
+	User      User
+	MovieID   uint
+	Movie     Movie
+	Rating    float32
+	Content   string
 }
 
 func (Review) TableName() string {

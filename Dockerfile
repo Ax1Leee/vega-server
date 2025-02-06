@@ -13,7 +13,9 @@ RUN go mod download
 
 COPY . .
 
-RUN go build -o vega-server ./cmd/server
+RUN apk add build-base
+
+RUN CGO_ENABLED=1 go build -o vega-server ./cmd/server
 
 # 运行阶段
 FROM alpine
@@ -23,6 +25,8 @@ WORKDIR /app
 COPY --from=builder /app/vega-server .
 
 COPY --from=builder /app/config ./config
+
+COPY --from=builder /app/storage ./storage
 
 EXPOSE 8080
 

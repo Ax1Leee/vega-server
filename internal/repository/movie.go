@@ -18,7 +18,7 @@ func NewMovieRepository(repository *Repository) *MovieRepository {
 
 func (movieRepository *MovieRepository) QueryMovieByID(id uint) (*model.Movie, error) {
 	movie := &model.Movie{}
-	if err := movieRepository.db.Preload("MovieGenres, MovieGenres.Genre, MovieStars, MovieStars.Star, Reviews").Where("id = ?", id).First(&movie).Error; err != nil {
+	if err := movieRepository.db.Preload("Genres").Preload("Stars").Preload("Reviews").Where("id = ?", id).First(&movie).Error; err != nil {
 		return nil, err
 	}
 	return movie, nil

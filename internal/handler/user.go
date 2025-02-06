@@ -42,8 +42,8 @@ func (userHandler *UserHandler) SignUp(c *gin.Context) {
 	}
 	resp, err := userHandler.userService.SignUp(req)
 	if err != nil {
-		if errors.Is(err, errors.New("email already in use")) {
-			api.HandleError(c, 400, "Email already in use", nil)
+		if errors.Is(err, errors.New("email already exists")) {
+			api.HandleError(c, 400, "Email already exists", nil)
 			return
 		} else {
 			api.HandleError(c, 500, "Internal Server Error", nil)

@@ -14,12 +14,10 @@ log:
   level: "Debug"
 
 jwt:
-  key: "s9K7yX6tQ2vU8wD4fG1hJ3lZ5xR0pNcVbM"
+  key: "00000000000000000000000000000000"
 
 repo:
-  db:
-    dsn: "root:123456@tcp(127.0.0.1:3306)/vega_db?charset=utf8mb4&parseTime=True&loc=Local"
   rdb:
-    addr: "127.0.0.1:6379"
+    addr: "localhost:6379"
     password: "123456"
     db: 0

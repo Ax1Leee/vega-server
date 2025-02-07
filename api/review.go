@@ -17,3 +17,8 @@ type GetReviewFromUserResponseData struct {
 type GetReviewToMovieRequest struct {
 	ID uint `form:"reviewID" binding:"required"`
 }
+
+type GetReviewToMovieResponseData struct {
+	User   User   `json:"user"`
+	Review Review `json:"review"`
+}

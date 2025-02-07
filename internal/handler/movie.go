@@ -78,7 +78,6 @@ func (movieHandler *MovieHandler) GetAdvancedMovie(c *gin.Context) {
 // @Produce json
 // @Param genre query string true "Genre"
 // @Param category query string true "Category"
-// @Param field query string false "Field"
 // @Success 200 {object} api.Response "成功获取电影类型榜单"
 // @Failure 400 {object} api.Response "请求参数错误"
 // @Failure 500 {object} api.Response "服务器内部错误"
@@ -89,42 +88,11 @@ func (movieHandler *MovieHandler) GetMovies(c *gin.Context) {
 		api.HandleError(c, 400, "Bad Request", nil)
 		return
 	}
-	switch req.Field {
-	case "":
-		resp, err := movieHandler.movieService.GetIDs(req.Genre, req.Category)
-		if err != nil {
-			api.HandleError(c, 500, "Internal Server Error", nil)
-			return
-		}
-		api.HandleSuccess(c, resp)
-		return
-	case "title":
-		resp, err := movieHandler.movieService.GetTitles(req.Genre, req.Category)
-		if err != nil {
-			api.HandleError(c, 500, "Internal Server Error", nil)
-			return
-		}
-		api.HandleSuccess(c, resp)
-		return
-	default:
-		api.HandleError(c, 400, "Bad Request", nil)
-		return
-	}
-}
-
-// GetNowPlaying godoc
-// @Summary 获取正在热映电影列表
-// @Description 获取正在热映电影列表接口
-// @Tags 电影
-// @Accept json
-// @Produce json
-// @Success 200 {object} api.Response "成功获取正在热映电影列表"
-// @Failure 500 {object} api.Response "服务器内部错误"
-// @Router /movies/cinema/now-playing [get]
-func (movieHandler *MovieHandler) GetNowPlaying(c *gin.Context) {
-	resp, err := movieHandler.movieService.GetNowPlaying()
+	resp, err := movieHandler.movieService.GetMovies(req.Genre, req.Category)
 	if err != nil {
 		api.HandleError(c, 500, "Internal Server Error", nil)
+		return
 	}
 	api.HandleSuccess(c, resp)
+	return
 }

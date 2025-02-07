@@ -43,11 +43,6 @@ type GetAdvancedUserResponseData struct {
 	Reviews []uint       `json:"reviews"`
 }
 
-type GetReviewToMovieResponseData struct {
-	User   User   `json:"user"`
-	Review Review `json:"review"`
-}
-
 type GetReviewResponseData struct {
 	Rating  float32 `json:"rating"`
 	Content string  `json:"content"`

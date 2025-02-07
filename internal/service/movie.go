@@ -77,47 +77,14 @@ func (movieService *MovieService) GetAdvancedMovie(id uint) (*api.GetAdvancedMov
 	return resp, nil
 }
 
-func (movieService *MovieService) GetIDs(genre string, category string) (*api.GetIDsResponseData, error) {
-	ids, err := movieService.movieRepository.QueryIDsByGenreAndCategory(genre, category)
+func (movieService *MovieService) GetMovies(genre string, category string) (*api.GetMoviesResponseData, error) {
+	movies, err := movieService.movieRepository.QueryMoviesByGenreAndCategory(genre, category)
 	if err != nil {
 		return nil, errors.New("failed to get movies")
 	}
 
-	resp := &api.GetIDsResponseData{
-		IDs: ids,
-	}
-	return resp, nil
-}
-
-func (movieService *MovieService) GetTitles(genre string, category string) (*api.GetTitlesResponseData, error) {
-	ids, err := movieService.movieRepository.QueryIDsByGenreAndCategory(genre, category)
-	if err != nil {
-		return nil, errors.New("failed to get movies")
-	}
-
-	titles := make([]string, 0, 5)
-	for _, id := range ids[0:5] {
-		title, err := movieService.movieRepository.QueryTitleByID(id)
-		if err != nil {
-			return nil, errors.New("failed to get movies")
-		}
-		titles = append(titles, title)
-	}
-
-	resp := &api.GetTitlesResponseData{
-		Titles: titles,
-	}
-	return resp, nil
-}
-
-func (movieService *MovieService) GetNowPlaying() (*api.GetNowPlayingResponseData, error) {
-	ids, err := movieService.movieRepository.QueryNowPlaying()
-	if err != nil {
-		return nil, errors.New("failed to get movies")
-	}
-
-	resp := &api.GetNowPlayingResponseData{
-		IDs: ids,
+	resp := &api.GetMoviesResponseData{
+		Movies: movies,
 	}
 	return resp, nil
 }

@@ -139,12 +139,6 @@ const docTemplate = `{
                         "name": "category",
                         "in": "query",
                         "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "Field",
-                        "name": "field",
-                        "in": "query"
                     }
                 ],
                 "responses": {
@@ -156,35 +150,6 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "请求参数错误",
-                        "schema": {
-                            "$ref": "#/definitions/api.Response"
-                        }
-                    },
-                    "500": {
-                        "description": "服务器内部错误",
-                        "schema": {
-                            "$ref": "#/definitions/api.Response"
-                        }
-                    }
-                }
-            }
-        },
-        "/movies/cinema/now-playing": {
-            "get": {
-                "description": "获取正在热映电影列表接口",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "电影"
-                ],
-                "summary": "获取正在热映电影列表",
-                "responses": {
-                    "200": {
-                        "description": "成功获取正在热映电影列表",
                         "schema": {
                             "$ref": "#/definitions/api.Response"
                         }

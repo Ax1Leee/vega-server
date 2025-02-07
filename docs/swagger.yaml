@@ -126,10 +126,6 @@ paths:
           name: category
           required: true
           type: string
-        - description: Field
-          in: query
-          name: field
-          type: string
       produces:
         - application/json
       responses:
@@ -146,25 +142,6 @@ paths:
           schema:
             $ref: '#/definitions/api.Response'
       summary: 获取电影类型榜单
-      tags:
-        - 电影
-  /movies/cinema/now-playing:
-    get:
-      consumes:
-        - application/json
-      description: 获取正在热映电影列表接口
-      produces:
-        - application/json
-      responses:
-        "200":
-          description: 成功获取正在热映电影列表
-          schema:
-            $ref: '#/definitions/api.Response'
-        "500":
-          description: 服务器内部错误
-          schema:
-            $ref: '#/definitions/api.Response'
-      summary: 获取正在热映电影列表
       tags:
         - 电影
   /review/movie:

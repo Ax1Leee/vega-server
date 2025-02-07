@@ -42,17 +42,8 @@ type GetAdvancedMovieResponseData struct {
 type GetMoviesRequest struct {
 	Genre    string `form:"genre" binding:"required"`
 	Category string `form:"category" binding:"required"`
-	Field    string `form:"field"`
 }
 
-type GetIDsResponseData struct {
-	IDs []uint `json:"ids"`
-}
-
-type GetTitlesResponseData struct {
-	Titles []string `json:"titles"`
-}
-
-type GetNowPlayingResponseData struct {
-	IDs []uint `json:"ids"`
+type GetMoviesResponseData struct {
+	Movies []uint `json:"movies"`
 }

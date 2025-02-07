@@ -51,7 +51,6 @@ func NewHTTPServer(
 			public.GET("/movie", movieHandler.GetMovie)
 			public.GET("/movie/reviews", movieHandler.GetAdvancedMovie)
 			public.GET("/movies", movieHandler.GetMovies)
-			public.GET("/movies/cinema/now-playing", movieHandler.GetNowPlaying)
 			public.GET("/review/user", reviewHandler.GetReviewFromUser)
 			public.GET("/review/movie", reviewHandler.GetReviewToMovie)
 		}

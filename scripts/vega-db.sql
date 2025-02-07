@@ -32,20 +32,6 @@ CREATE TABLE IF NOT EXISTS movies
     deleted_at    TEXT                                        --deleted at
 ); --movies
 
-CREATE TABLE IF NOT EXISTS reviews
-(
-    id         INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, --id
-    user_id    INTEGER                           NOT NULL, --user id
-    movie_id   INTEGER                           NOT NULL, --movie id
-    rating     REAL                              NOT NULL, --rating
-    content    TEXT                              NOT NULL, --content
-    created_at TEXT                              NOT NULL, --created at
-    updated_at TEXT,                                       --updated at
-    deleted_at TEXT,                                       --deleted at
-    FOREIGN KEY (user_id) REFERENCES users (id),
-    FOREIGN KEY (movie_id) REFERENCES movies (id)
-); --reviews
-
 CREATE TABLE IF NOT EXISTS genres
 (
     id         INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, --id
@@ -87,3 +73,17 @@ CREATE TABLE IF NOT EXISTS movie_stars
     FOREIGN KEY (movie_id) REFERENCES movies (id),
     FOREIGN KEY (star_id) REFERENCES stars (id)
 ); --movie_stars;
+
+CREATE TABLE IF NOT EXISTS reviews
+(
+    id         INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, --id
+    user_id    INTEGER                           NOT NULL, --user id
+    movie_id   INTEGER                           NOT NULL, --movie id
+    rating     REAL                              NOT NULL, --rating
+    content    TEXT                              NOT NULL, --content
+    created_at TEXT                              NOT NULL, --created at
+    updated_at TEXT,                                       --updated at
+    deleted_at TEXT,                                       --deleted at
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    FOREIGN KEY (movie_id) REFERENCES movies (id)
+); --reviews
